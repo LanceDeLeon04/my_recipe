@@ -1,3 +1,4 @@
+import CommentsSection from '../components/CommentsSection'
 import { useNavigate } from 'react-router-dom'
 import './RecipeCard.css'
 

@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { useAuth } from '../context/AuthContext'
 import { setActiveCategory } from '../store/slices/recipeSlice'
 import './Navbar.css'
 
@@ -15,12 +16,17 @@ const NAV_CATEGORIES = [
 
 function Navbar() {
   const navigate = useNavigate()
-  const location = useLocation()
   const dispatch = useDispatch()
+  const { user, signOut } = useAuth()
 
   const handleCategory = (cat) => {
     dispatch(setActiveCategory(cat))
     navigate('/home')
+  }
+
+  const handleSignOut = async () => {
+    await signOut()
+    navigate('/')
   }
 
   return (
@@ -31,14 +37,34 @@ function Navbar() {
         </div>
         <div className="navbar-links">
           {NAV_CATEGORIES.map(cat => (
-            <span
-              key={cat.value}
-              className="navbar-link"
-              onClick={() => handleCategory(cat.value)}
-            >
+            <span key={cat.value} className="navbar-link" onClick={() => handleCategory(cat.value)}>
               {cat.label}
             </span>
           ))}
+        </div>
+        <div className="navbar-auth">
+          {user ? (
+            <>
+              <button className="btn btn-primary navbar-add-btn" onClick={() => navigate('/add-recipe')}>
+                Add Recipe
+              </button>
+              <span className="navbar-username">
+                {user.user_metadata?.username || user.email.split('@')[0]}
+              </span>
+              <button className="btn btn-outline navbar-signout" onClick={handleSignOut}>
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="btn btn-outline navbar-auth-btn" onClick={() => navigate('/login')}>
+                Sign In
+              </button>
+              <button className="btn btn-primary navbar-auth-btn" onClick={() => navigate('/signup')}>
+                Sign Up
+              </button>
+            </>
+          )}
         </div>
       </div>
     </nav>

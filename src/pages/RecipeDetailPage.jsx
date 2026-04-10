@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { fetchRecipeDetail, clearSelectedMeal } from '../store/slices/recipeSlice'
 import './RecipeDetailPage.css'
+import CommentsSection from '../components/CommentsSection'
 
 function RecipeDetailPage() {
   const { id } = useParams()
@@ -107,6 +108,9 @@ function RecipeDetailPage() {
                   ))}
               </div>
             </div>
+
+            {/* Comments & Ratings */}
+            <CommentsSection recipeId={id} />
           </div>
         </div>
       </div>

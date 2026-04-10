@@ -53,3 +53,31 @@
     display: none;
   }
 }
+
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.navbar-auth-btn {
+  font-size: 13px;
+  padding: 8px 18px;
+}
+
+.navbar-add-btn {
+  font-size: 13px;
+  padding: 8px 18px;
+}
+
+.navbar-signout {
+  font-size: 13px;
+  padding: 8px 18px;
+}
+
+.navbar-username {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-brown);
+}
