@@ -1,18 +1,19 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { fetchRecipes } from '../store/slices/recipeSlice'
+import { fetchAllRecipes, fetchFilipinoRecipes, setActiveCategory } from '../store/slices/recipeSlice'
 import './LandingPage.css'
 
 function LandingPage() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { meals, status } = useSelector(state => state.recipes)
+  const { meals, filipinoMeals, status, filipinoStatus } = useSelector(state => state.recipes)
   const [carouselIndex, setCarouselIndex] = useState(0)
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchRecipes())
-  }, [dispatch, status])
+  if (status === 'idle') dispatch(fetchAllRecipes())
+  if (filipinoStatus === 'idle') dispatch(fetchFilipinoRecipes())
+}, [dispatch, status, filipinoStatus])
 
   useEffect(() => {
     if (meals.length === 0) return
@@ -35,9 +36,9 @@ function LandingPage() {
         <div className="container hero-content">
           <h1 className="hero-title">Bulldog Bites</h1>
           <p className="hero-sub">Fresh, flavorful seafood recipes curated just for you.</p>
-          <button className="btn btn-primary hero-btn" onClick={() => navigate('/home')}>
-            Browse Recipes
-          </button>
+          <button className="btn btn-primary hero-btn" onClick={() => { dispatch(setActiveCategory('All')); navigate('/home') }}>
+  Browse Recipes
+</button>
         </div>
       </section>
 
@@ -87,7 +88,7 @@ function LandingPage() {
           <div className="about-visual">
             <div className="about-badge">
               <span className="about-badge-num">{meals.length}+</span>
-              <span className="about-badge-label">Seafood Recipes</span>
+              <span className="about-badge-label">Delicious Recipes</span>
             </div>
           </div>
         </div>
@@ -141,14 +142,46 @@ function LandingPage() {
         </section>
       )}
 
+      {/* Filipino Classics */}
+{filipinoMeals.length > 0 && (
+  <section className="section">
+    <div className="container">
+      <h2 className="section-title">Filipino Classics</h2>
+      <p className="section-subtitle">Beloved dishes straight from the Filipino kitchen</p>
+      <div className="landing-grid">
+        {filipinoMeals.slice(0, 4).map(meal => (
+          <div key={meal.idMeal} className="landing-card" onClick={() => navigate(`/recipe/${meal.idMeal}`)}>
+            <div className="landing-card-img-wrap">
+              <img src={meal.strMealThumb} alt={meal.strMeal} />
+              <div className="landing-card-overlay" />
+            </div>
+            <div className="landing-card-body">
+              <h3>{meal.strMeal}</h3>
+              <span className="tag">Filipino</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ textAlign: 'center', marginTop: '28px' }}>
+        <button
+          className="btn btn-outline"
+          onClick={() => { dispatch(setActiveCategory('Filipino')); navigate('/home') }}
+        >
+          See All Filipino Recipes
+        </button>
+      </div>
+    </div>
+  </section>
+)}
+
       {/* CTA */}
       <section className="section cta-section">
         <div className="container cta-inner">
           <h2>Ready to Cook?</h2>
           <p>Explore our full collection of seafood recipes and find your next favorite dish.</p>
-          <button className="btn btn-primary" style={{ marginTop: '24px' }} onClick={() => navigate('/home')}>
-            See All Recipes
-          </button>
+          <button className="btn btn-primary" style={{ marginTop: '24px' }} onClick={() => { dispatch(setActiveCategory('All')); navigate('/home') }}>
+  See All Recipes
+</button>
         </div>
       </section>
 

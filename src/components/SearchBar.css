@@ -74,3 +74,40 @@
 .searchbar-sort:focus {
   border-color: var(--color-primary);
 }
+
+.searchbar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-btn {
+  padding: 8px 20px;
+  border-radius: var(--radius-xl);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  background: var(--color-bg-card);
+  color: var(--color-text-muted);
+  border: 1.5px solid var(--color-border);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.category-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.category-btn.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}

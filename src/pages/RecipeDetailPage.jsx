@@ -110,6 +110,42 @@ function RecipeDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="container footer-inner">
+          <span
+            className="navbar-logo"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '22px',
+              color: 'var(--color-primary)'
+            }}
+          >
+            Bulldog Bites
+          </span>
+
+          <p
+            style={{
+              fontSize: '13px',
+              color: 'var(--color-text-muted)',
+              marginTop: '8px'
+            }}
+          >
+            A project submitted to Mr. Jerwin Cruz by De Leon L. | Par | Pecho | Robles
+          </p>
+
+          <p
+            style={{
+              fontSize: '13px',
+              color: 'var(--color-text-muted)',
+              marginTop: '8px'
+            }}
+          >
+            Application Development Course | NU Laguna SCS
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }

@@ -47,3 +47,9 @@
   color: var(--color-primary);
   border-bottom-color: var(--color-primary);
 }
+
+@media (max-width: 900px) {
+  .navbar-links {
+    display: none;
+  }
+}

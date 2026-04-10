@@ -159,3 +159,15 @@
     padding: 28px 24px;
   }
 }
+
+.footer {
+  background: var(--color-bg-dark);
+  padding: 40px 0;
+  margin-top: 72px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-inner {
+  text-align: center;
+}
