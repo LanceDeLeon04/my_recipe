@@ -99,7 +99,7 @@ function LandingPage() {
         <section className="section">
           <div className="container">
             <h2 className="section-title">Popular Recipes</h2>
-            <p className="section-subtitle">Our most-loved seafood dishes</p>
+            <p className="section-subtitle">Our most-loved dishes</p>
             <div className="landing-grid">
               {popular.map(meal => (
                 <div key={meal.idMeal} className="landing-card" onClick={() => navigate(`/recipe/${meal.idMeal}`)}>
@@ -178,7 +178,7 @@ function LandingPage() {
       <section className="section cta-section">
         <div className="container cta-inner">
           <h2>Ready to Cook?</h2>
-          <p>Explore our full collection of seafood recipes and find your next favorite dish.</p>
+          <p>Explore our full collection of delicious recipes and find your next favorite dish.</p>
           <button className="btn btn-primary" style={{ marginTop: '24px' }} onClick={() => { dispatch(setActiveCategory('All')); navigate('/home') }}>
   See All Recipes
 </button>
